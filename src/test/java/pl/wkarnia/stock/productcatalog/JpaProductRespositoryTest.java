@@ -1,25 +1,24 @@
-package pl.wkarnia.stock;
+package pl.wkarnia.stock.productcatalog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import pl.wkarnia.stock.productcatalog.Image;
+import pl.wkarnia.stock.productcatalog.Product;
 import pl.wkarnia.stock.productcatalog.ProductRepository;
-
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.UUID;
 
 @SpringBootTest
-public class JpaPlaygroundTest {
+public class JpaProductRespositoryTest {
     @Autowired
     ProductRepository productRepository;
 
     @Test
-    void itStoreProduct() {
+    void itsStoredProduct() {
         UUID id = UUID.randomUUID();
-        Image product = new Image(
+        Product product = new Product(
                 id,
                 "My prod",
                 BigDecimal.ONE,
@@ -27,6 +26,6 @@ public class JpaPlaygroundTest {
                 "media.jpeg");
         productRepository.save(product);
 
-        Image loaded = productRepository.findById(id.toString()).get();
+        Product loaded = productRepository.findById(id.toString()).get();
     }
 }
