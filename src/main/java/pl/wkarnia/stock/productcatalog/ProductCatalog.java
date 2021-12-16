@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class ProductCatalog {
 
+    public Product loadProduct;
     private ProductRepository repository;
 
     public ProductCatalog(ProductRepository repository) {
