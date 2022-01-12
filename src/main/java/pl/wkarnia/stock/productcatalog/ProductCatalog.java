@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class ProductCatalog {
 
-    public Product loadProduct;
     private ProductRepository repository;
 
     public ProductCatalog(ProductRepository repository) {
@@ -43,5 +42,10 @@ public class ProductCatalog {
 
     public void empty() {
         repository.deleteAll();
+    }
+
+    public Product getById(String productId) {
+        Product product = repository.findById(productId).get();
+        return product;
     }
 }

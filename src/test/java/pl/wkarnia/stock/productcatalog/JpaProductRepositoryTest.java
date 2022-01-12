@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 @SpringBootTest
-public class JpaProductRespositoryTest {
+public class JpaProductRepositoryTest {
     @Autowired
     ProductRepository productRepository;
 
