@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<hyml lang="en">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>My UEK store</title>
+    <meta charset="UTF-8">
+    <title>My uek store</title>
+    <link rel="stylesheet" href="/css/main.css"/>
 </head>
 <body>
-    <h1>My UEK store</h1>
-    <stript src="/js/main.js"></stript>
+<h1>My uek store</h1>
+<aside>
+    <div class="basket">
+        Items count: <span class="basket__items-count">0</span>
+        <br/>
+        Basket total: <span class="basket__total">0</span>
+        <button id="buy">BUY NOW</button>
+    </div>
+</aside>
+<main>
+    <div class="products__container">
+        <ul id="products" class="products__list">
+
+        </ul>
+    </div>
+</main>
+<script src="/js/main.js"></script>
 </body>
 </html>
