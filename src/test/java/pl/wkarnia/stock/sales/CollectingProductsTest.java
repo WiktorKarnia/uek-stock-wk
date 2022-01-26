@@ -2,11 +2,9 @@ package pl.wkarnia.stock.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.wkarnia.stock.productcatalog.ProductCatalog;
-
+import pl.wkarnia.stock.sales.offerting.OfferMaker;
+import pl.wkarnia.stock.sales.ordering.InMemoryReservationStorage;
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -93,8 +91,9 @@ public class CollectingProductsTest {
     private SalesFacade thereIsSalesModule() {
         return new SalesFacade(
                 basketStorage,
-                productDetailsProvider
-        );
+                productDetailsProvider,
+                new OfferMaker(productDetailsProvider),
+                new InMemoryReservationStorage(), new DummyPaymentGateway());
     }
 
     private String thereIsCustomer(String customerName) {

@@ -2,6 +2,10 @@ package pl.wkarnia.stock.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.wkarnia.stock.sales.offerting.Offer;
+import pl.wkarnia.stock.sales.offerting.OfferMaker;
+import pl.wkarnia.stock.sales.ordering.InMemoryReservationStorage;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
@@ -48,7 +52,8 @@ public class MakingAnOfferTest {
     private SalesFacade thereIsSalesModule() {
         return new SalesFacade(
                 basketStorage,
-                productDetailsProvider
-        );
+                productDetailsProvider,
+                new OfferMaker(productDetailsProvider),
+                new InMemoryReservationStorage(), new DummyPaymentGateway());
     }
 }

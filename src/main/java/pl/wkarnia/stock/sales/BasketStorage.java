@@ -1,6 +1,5 @@
 package pl.wkarnia.stock.sales;
 
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;

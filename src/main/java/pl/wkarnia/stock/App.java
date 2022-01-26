@@ -6,11 +6,10 @@ import org.springframework.context.annotation.Bean;
 import pl.wkarnia.stock.productcatalog.Product;
 import pl.wkarnia.stock.productcatalog.ProductCatalog;
 import pl.wkarnia.stock.productcatalog.ProductRepository;
-import pl.wkarnia.stock.productcatalog.ProductStorage;
-import pl.wkarnia.stock.sales.BasketStorage;
-import pl.wkarnia.stock.sales.ProductDetails;
-import pl.wkarnia.stock.sales.ProductDetailsProvider;
-import pl.wkarnia.stock.sales.SalesFacade;
+import pl.wkarnia.stock.sales.*;
+import pl.wkarnia.stock.sales.offerting.OfferMaker;
+import pl.wkarnia.stock.sales.ordering.InMemoryReservationStorage;
+import pl.wkarnia.stock.sales.ordering.ReservationRepository;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -26,7 +25,7 @@ public class App {
             ProductRepository productRepository) {
         ProductCatalog productCatalog = new ProductCatalog(productRepository);
         String productId1 = productCatalog.addProduct(
-                "Example product 1",
+                "MY Example product 1",
                 BigDecimal.valueOf(10.10),
                 Arrays.asList("tag1", "tag2"),
                 "https://picsum.photos/200/300"
@@ -41,6 +40,14 @@ public class App {
         );
         productCatalog.publish(productId2);
 
+        String productId3 = productCatalog.addProduct(
+                "Example product 3",
+                BigDecimal.valueOf(30.10),
+                Arrays.asList("tag2"),
+                "https://picsum.photos/301/201"
+        );
+        productCatalog.publish(productId3);
+
         return productCatalog;
     }
 
@@ -48,8 +55,9 @@ public class App {
     public SalesFacade createSalesFacade(ProductDetailsProvider productDetailsProvider) {
         return new SalesFacade(
                 new BasketStorage(),
-                productDetailsProvider
-        );
+                productDetailsProvider,
+                new OfferMaker(productDetailsProvider),
+                new InMemoryReservationStorage(), new DummyPaymentGateway());
     }
 
     @Bean
@@ -61,5 +69,10 @@ public class App {
                     product.getPrice()
             );
         };
+    }
+
+    @Bean
+    public JpaReservationStorage createJpaReervationStorage(ReservationRepository reservationRepository) {
+        return new JpaReservationStorage(reservationRepository);
     }
 }

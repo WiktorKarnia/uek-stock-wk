@@ -1,4 +1,4 @@
-package pl.wkarnia.stock.sales;
+package pl.wkarnia.stock.sales.offerting;
 
 import java.math.BigDecimal;
 
