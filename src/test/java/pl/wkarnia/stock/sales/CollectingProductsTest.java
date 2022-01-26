@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.wkarnia.stock.sales.offerting.OfferMaker;
 import pl.wkarnia.stock.sales.ordering.InMemoryReservationStorage;
+import pl.wkarnia.stock.sales.payment.DummyPaymentGateway;
+
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;

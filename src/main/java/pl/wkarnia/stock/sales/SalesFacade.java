@@ -1,21 +1,22 @@
 package pl.wkarnia.stock.sales;
 
-
 import pl.wkarnia.stock.sales.offerting.Offer;
 import pl.wkarnia.stock.sales.offerting.OfferMaker;
 import pl.wkarnia.stock.sales.ordering.InMemoryReservationStorage;
 import pl.wkarnia.stock.sales.ordering.Reservation;
 import pl.wkarnia.stock.sales.ordering.ReservationDetails;
+import pl.wkarnia.stock.sales.payment.DummyPaymentGateway;
+import pl.wkarnia.stock.sales.payment.PaymentGateway;
 
 public class SalesFacade {
     private BasketStorage basketStorage;
     private ProductDetailsProvider productDetailsProvider;
     private OfferMaker offerMaker;
     private InMemoryReservationStorage reservationStorage;
-    private DummyPaymentGateway paymentGateway;
+    private PaymentGateway paymentGateway;
 
 
-    public SalesFacade(BasketStorage basketStorage, ProductDetailsProvider productDetailsProvider, OfferMaker offerMaker, InMemoryReservationStorage reservationStorage, DummyPaymentGateway paymentGateway) {
+    public SalesFacade(BasketStorage basketStorage, ProductDetailsProvider productDetailsProvider, OfferMaker offerMaker, InMemoryReservationStorage reservationStorage, PaymentGateway paymentGateway) {
         this.basketStorage = basketStorage;
         this.productDetailsProvider = productDetailsProvider;
         this.offerMaker = offerMaker;

@@ -2,8 +2,9 @@ package pl.wkarnia.stock.sales.ordering;
 
 import pl.wkarnia.stock.sales.BasketItem;
 import pl.wkarnia.stock.sales.CustomerData;
-import pl.wkarnia.stock.sales.DummyPaymentGateway;
+import pl.wkarnia.stock.sales.payment.DummyPaymentGateway;
 import pl.wkarnia.stock.sales.offerting.Offer;
+import pl.wkarnia.stock.sales.payment.PaymentGateway;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -64,7 +65,7 @@ public class Reservation {
         return lines.size();
     }
 
-    public void registerPayment(DummyPaymentGateway paymentGateway) {
+    public void registerPayment(PaymentGateway paymentGateway) {
         paymentDetails = paymentGateway.register(id, total, customerDetails);
     }
 

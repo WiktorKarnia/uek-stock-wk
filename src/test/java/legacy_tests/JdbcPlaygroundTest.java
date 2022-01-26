@@ -1,4 +1,4 @@
-package pl.wkarnia.stock.legacy_tests;
+package legacy_tests;
 
 
 import org.junit.jupiter.api.BeforeEach;

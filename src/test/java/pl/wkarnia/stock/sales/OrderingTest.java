@@ -8,6 +8,7 @@ import pl.wkarnia.stock.sales.offerting.OfferMaker;
 import pl.wkarnia.stock.sales.ordering.InMemoryReservationStorage;
 import pl.wkarnia.stock.sales.ordering.Reservation;
 import pl.wkarnia.stock.sales.ordering.ReservationDetails;
+import pl.wkarnia.stock.sales.payment.DummyPaymentGateway;
 
 import java.math.BigDecimal;
 import java.util.Optional;

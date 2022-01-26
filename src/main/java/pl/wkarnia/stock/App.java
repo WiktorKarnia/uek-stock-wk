@@ -3,6 +3,7 @@ package pl.wkarnia.stock;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import pl.wkarnia.stock.payment.PayU;
 import pl.wkarnia.stock.productcatalog.Product;
 import pl.wkarnia.stock.productcatalog.ProductCatalog;
 import pl.wkarnia.stock.productcatalog.ProductRepository;
@@ -10,6 +11,8 @@ import pl.wkarnia.stock.sales.*;
 import pl.wkarnia.stock.sales.offerting.OfferMaker;
 import pl.wkarnia.stock.sales.ordering.InMemoryReservationStorage;
 import pl.wkarnia.stock.sales.ordering.ReservationRepository;
+import pl.wkarnia.stock.sales.payment.DummyPaymentGateway;
+import pl.wkarnia.stock.sales.payment.PayUPaymentGateway;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -52,12 +55,13 @@ public class App {
     }
 
     @Bean
-    public SalesFacade createSalesFacade(ProductDetailsProvider productDetailsProvider) {
+    public SalesFacade createSalesFacade(ProductDetailsProvider productDetailsProvider, PayU payU) {
         return new SalesFacade(
                 new BasketStorage(),
                 productDetailsProvider,
                 new OfferMaker(productDetailsProvider),
-                new InMemoryReservationStorage(), new DummyPaymentGateway());
+                new InMemoryReservationStorage(),
+                new PayUPaymentGateway(payU));
     }
 
     @Bean

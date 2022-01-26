@@ -1,4 +1,4 @@
-package pl.wkarnia.stock.sales;
+package pl.wkarnia.stock.sales.payment;
 
 import pl.wkarnia.stock.sales.ordering.CustomerDetails;
 import pl.wkarnia.stock.sales.ordering.PaymentDetails;

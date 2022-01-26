@@ -4,88 +4,125 @@ const getProducts = () => {
         .catch(error => console.log(error));
 }
 
-const createHtmlElementFromString = (htmlAsString) => {
+const createHtmlElementFromString = (htmlElementAsString) => {
     let myElement = document.createElement('div');
-    myElement.innerHTML = htmlAsString.trim();
-
+    myElement.innerHTML = htmlElementAsString.trim();
     return myElement.firstChild;
 }
 
-const createProductComponent = (product) => {
+const createProductHtmlComponent = (product) => {
     const template = `
         <li class="product">
             <h3>${product.title}</h3>
-            <div class="product__image">
-                <img src="${product.mediaPath}" />
+            <div class="product__image-container">
+                <img src="${product.mediaPath}"/>
             </div>
             <span class="product__price">${product.price}</span>
             <button
                 class="product__add-to-basket"
                 data-product-id="${product.id}"
-            >Add to basket</button>
+            >
+                Add to basket
+            </button>
         </li>
     `;
 
     return createHtmlElementFromString(template);
 }
 
-const appendToProductList = (htmlList, htmlElements) => {
-    htmlElements.forEach(element => htmlList.appendChild(element));
+const appendProductsToList = (listEl, productsAsHtml) => {
+    productsAsHtml.forEach(el => listEl.appendChild(el));
 
-    return htmlElements;
-}
-
-const handleAddToBasket = (productId) => {
-    const url = `/api/add-product/${productId}`;
-    return fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-    });
-}
-
-const updateBasketComponent = (offer) => {
-    const basketEl = document.querySelector('.basket');
-    basketEl.querySelector('.basket__items-count').innerText = `${offer.linesCount} Items`;
-    basketEl.querySelector('.basket__total').innerText = `${offer.total} PLN`;
+    return productsAsHtml;
 }
 
 const refreshCurrentOffer = () => {
-    return fetch('/api/current-offer')
+    const basketEl = document.querySelector('.basket');
+    fetch('/api/current-offer')
         .then(r => r.json())
-        .then(offer => updateBasketComponent(offer))
+        .then(offer => {
+            basketEl.querySelector('.basket__total').innerText = `${offer.total} PLN`;
+            basketEl.querySelector('.basket__items-count').innerText = `${offer.linesCount} Items`;
+        })
 }
 
-const initializeAddToBasketHandler = (htmlElements) => {
-    htmlElements.forEach(element => {
-        const addToBasketBtn = element.querySelector('.product__add-to-basket');
+const initializeAddToBasketHandler = (productHtmlEl) => {
+    const addToBasketBtn = productHtmlEl.querySelector('.product__add-to-basket');
 
-        addToBasketBtn.addEventListener('click', (event) => {
-            const productId = event.target.getAttribute('data-product-id');
-            handleAddToBasket(productId)
-                .then(() => refreshCurrentOffer())
-                .catch((err) => console.log('something is not YES :>'))
-        });
+    addToBasketBtn.addEventListener('click', (event) => {
+        const productId = event.target.getAttribute('data-product-id');
+        const url = `/api/add-product/${productId}`;
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+        })
+            .then(() => refreshCurrentOffer())
+            .catch(err => console.log(err));
     })
-    return htmlElements;
+}
+
+const initializeAddToBasketHandling = (productsAsHtmlEl) => {
+    productsAsHtmlEl.forEach(el => initializeAddToBasketHandler(el))
+    return productsAsHtmlEl;
+}
+
+const handleCheckout = () => {
+    console.log('lets do some checkout steps');
+}
+
+const showCheckout = () => {
+   const checkoutLayer = document.querySelector('.checkout__layer');
+   checkoutLayer.style.display = 'block';
+}
+
+const closeCheckout = () => {
+    console.log('close');
+   const checkoutLayer = document.querySelector('.checkout__layer');
+   checkoutLayer.style.display = 'none';
 }
 
 (() => {
     console.log("It works :):)");
-    const productsList = document.querySelector('.products__list');
-    const buyBtn = document.getElementById('buy');
-
-    buyBtn.addEventListener('click', () => {
-        console.log('accept offer needs to be implemented');
-    })
-
-    refreshCurrentOffer()
-        .then(() => console.log('offer should be refreshed'));
-
+    const productsList = document.getElementById('products');
     getProducts()
-        .then(productsAsJsonObject => productsAsJsonObject.map(createProductComponent))
-        .then(productsAsHtmlEl => initializeAddToBasketHandler(productsAsHtmlEl))
-        .then(productsAsHtmlEl => appendToProductList(productsList, productsAsHtmlEl))
+        .then(productsAsObjects => productsAsObjects.map(createProductHtmlComponent))
+        .then(productsAsHtmlEl => initializeAddToBasketHandling(productsAsHtmlEl))
+        .then(productsAsHtmlEl => appendProductsToList(productsList, productsAsHtmlEl))
+        .then(products => console.log(products))
+    ;
 
+    refreshCurrentOffer();
+
+    const checkoutBtn = document.querySelector('.basket__checkout');
+    checkoutBtn.addEventListener('click', showCheckout);
+
+    const closeCheckoutBtn = document.querySelector('.checkout__close');
+    closeCheckoutBtn.addEventListener('click', closeCheckout);
+
+    const checkoutForm = document.querySelector('.checkout__form');
+
+    checkoutForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(checkoutForm);
+        const data = {};
+
+        formData.forEach((value, key) => (data[key] = value));
+
+        fetch(checkoutForm.getAttribute('action'), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(reservationDetails => {
+                checkoutForm.reset();
+                window.location.href = reservationDetails.paymentUrl;
+            });
+
+    });
 })();
