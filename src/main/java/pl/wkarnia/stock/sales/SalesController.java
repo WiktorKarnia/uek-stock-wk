@@ -1,6 +1,7 @@
 package pl.wkarnia.stock.sales;
 
 import org.springframework.web.bind.annotation.*;
+import pl.wkarnia.stock.sales.dto.CustomerData;
 import pl.wkarnia.stock.sales.offerting.Offer;
 import pl.wkarnia.stock.sales.ordering.ReservationDetails;
 

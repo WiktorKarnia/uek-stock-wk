@@ -3,6 +3,10 @@ package pl.wkarnia.stock.sales;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import pl.wkarnia.stock.sales.basket.BasketStorage;
+import pl.wkarnia.stock.sales.catalog.ProductDetails;
+import pl.wkarnia.stock.sales.dto.CustomerData;
 import pl.wkarnia.stock.sales.offerting.Offer;
 import pl.wkarnia.stock.sales.offerting.OfferMaker;
 import pl.wkarnia.stock.sales.ordering.InMemoryReservationStorage;
@@ -92,3 +96,4 @@ public class OrderingTest {
                 reservationStorage, new DummyPaymentGateway());
     }
 }
+

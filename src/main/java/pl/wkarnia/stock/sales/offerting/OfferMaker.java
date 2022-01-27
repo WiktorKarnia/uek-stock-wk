@@ -1,8 +1,8 @@
 package pl.wkarnia.stock.sales.offerting;
 
-import pl.wkarnia.stock.sales.Basket;
-import pl.wkarnia.stock.sales.BasketItem;
-import pl.wkarnia.stock.sales.ProductDetailsProvider;
+import pl.wkarnia.stock.sales.basket.Basket;
+import pl.wkarnia.stock.sales.basket.BasketItem;
+import pl.wkarnia.stock.sales.catalog.ProductDetailsProvider;
 
 import java.math.BigDecimal;
 import java.util.List;

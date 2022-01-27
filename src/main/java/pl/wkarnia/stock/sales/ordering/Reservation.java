@@ -1,8 +1,7 @@
 package pl.wkarnia.stock.sales.ordering;
 
-import pl.wkarnia.stock.sales.BasketItem;
-import pl.wkarnia.stock.sales.CustomerData;
-import pl.wkarnia.stock.sales.payment.DummyPaymentGateway;
+import pl.wkarnia.stock.sales.basket.BasketItem;
+import pl.wkarnia.stock.sales.dto.CustomerData;
 import pl.wkarnia.stock.sales.offerting.Offer;
 import pl.wkarnia.stock.sales.payment.PaymentGateway;
 

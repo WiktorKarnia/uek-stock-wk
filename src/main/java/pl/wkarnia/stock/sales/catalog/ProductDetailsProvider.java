@@ -1,6 +1,4 @@
-package pl.wkarnia.stock.sales;
-
-import pl.wkarnia.stock.productcatalog.Product;
+package pl.wkarnia.stock.sales.catalog;
 
 public interface ProductDetailsProvider {
     ProductDetails getProductDetails(String productId);

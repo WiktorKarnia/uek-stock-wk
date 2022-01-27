@@ -1,4 +1,4 @@
-package pl.wkarnia.stock.sales;
+package pl.wkarnia.stock.sales.basket;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -8,10 +8,13 @@ import pl.wkarnia.stock.productcatalog.Product;
 import pl.wkarnia.stock.productcatalog.ProductCatalog;
 import pl.wkarnia.stock.productcatalog.ProductRepository;
 import pl.wkarnia.stock.sales.*;
+import pl.wkarnia.stock.sales.basket.BasketStorage;
+import pl.wkarnia.stock.sales.catalog.ProductDetails;
+import pl.wkarnia.stock.sales.catalog.ProductDetailsProvider;
 import pl.wkarnia.stock.sales.offerting.OfferMaker;
 import pl.wkarnia.stock.sales.ordering.InMemoryReservationStorage;
+import pl.wkarnia.stock.sales.ordering.JpaReservationStorage;
 import pl.wkarnia.stock.sales.ordering.ReservationRepository;
-import pl.wkarnia.stock.sales.payment.DummyPaymentGateway;
 import pl.wkarnia.stock.sales.payment.PayUPaymentGateway;
 
 import java.math.BigDecimal;
@@ -28,23 +31,23 @@ public class App {
             ProductRepository productRepository) {
         ProductCatalog productCatalog = new ProductCatalog(productRepository);
         String productId1 = productCatalog.addProduct(
-                "MY Example product 1",
-                BigDecimal.valueOf(10.10),
+                "First example product",
+                BigDecimal.valueOf(20.10),
                 Arrays.asList("tag1", "tag2"),
-                "https://picsum.photos/200/300"
+                "https://picsum.photos/300/200"
         );
         productCatalog.publish(productId1);
 
         String productId2 = productCatalog.addProduct(
-                "Example product 2",
-                BigDecimal.valueOf(20.10),
+                "Second example product",
+                BigDecimal.valueOf(10.10),
                 Arrays.asList("tag2"),
-                "https://picsum.photos/300/200"
+                "https://picsum.photos/200/300"
         );
         productCatalog.publish(productId2);
 
         String productId3 = productCatalog.addProduct(
-                "Example product 3",
+                "Third example product",
                 BigDecimal.valueOf(30.10),
                 Arrays.asList("tag2"),
                 "https://picsum.photos/301/201"

@@ -1,11 +1,16 @@
 package pl.wkarnia.stock.sales;
 
+import pl.wkarnia.stock.sales.basket.Basket;
+import pl.wkarnia.stock.sales.basket.BasketItem;
+import pl.wkarnia.stock.sales.basket.BasketStorage;
+import pl.wkarnia.stock.sales.catalog.ProductDetails;
+import pl.wkarnia.stock.sales.catalog.ProductDetailsProvider;
+import pl.wkarnia.stock.sales.dto.CustomerData;
 import pl.wkarnia.stock.sales.offerting.Offer;
 import pl.wkarnia.stock.sales.offerting.OfferMaker;
 import pl.wkarnia.stock.sales.ordering.InMemoryReservationStorage;
 import pl.wkarnia.stock.sales.ordering.Reservation;
 import pl.wkarnia.stock.sales.ordering.ReservationDetails;
-import pl.wkarnia.stock.sales.payment.DummyPaymentGateway;
 import pl.wkarnia.stock.sales.payment.PaymentGateway;
 
 public class SalesFacade {

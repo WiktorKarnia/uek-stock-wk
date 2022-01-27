@@ -13,11 +13,11 @@ const createHtmlElementFromString = (htmlElementAsString) => {
 const createProductHtmlComponent = (product) => {
     const template = `
         <li class="product">
-            <h3>${product.title}</h3>
+            <h3 class="product__title">${product.title}</h3>
             <div class="product__image-container">
                 <img src="${product.mediaPath}"/>
             </div>
-            <span class="product__price">${product.price}</span>
+            <span class="product__price">Price: ${product.price} PLN</span>
             <button
                 class="product__add-to-basket"
                 data-product-id="${product.id}"

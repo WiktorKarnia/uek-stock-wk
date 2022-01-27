@@ -1,4 +1,4 @@
-package pl.wkarnia.stock.sales;
+package pl.wkarnia.stock.sales.ordering;
 
 import pl.wkarnia.stock.sales.ordering.Reservation;
 import pl.wkarnia.stock.sales.ordering.ReservationRepository;

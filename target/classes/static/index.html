@@ -4,14 +4,29 @@
     <meta charset="UTF-8">
     <title>My uek store</title>
     <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Dongle:wght@300&display=swap" rel="stylesheet">
 </head>
-<body>
-<h1>My uek store</h1>
-<div class="basket">
-    Total: <span class="basket__total">0 PLN</span>
-    Items count: <span class="basket__items-count">0 Items</span>
-    <button class="basket__checkout">CHECKOUT</button>
+<div class="header">
+    <div class="logo_container">
+        <h1>UEK Stock</h1>
+        <h3>A place where you'll get the best photos</h3>
+    </div>
+
+    <section class="basket">
+        <div class="basket__numbers">
+            <a>Items count: </a> <span class="basket__items-count"> 0 Items</span><br>
+            <a>Total: </a> <span class="basket__total"> 0 PLN</span><br>
+        </div>
+        <div class="basket__button">
+            <button class="basket__checkout">CHECKOUT</button>
+        </div>
+    </section>
 </div>
+
+
 <ul id="products" class="products__list"></ul>
 
 <div class="checkout__layer" style="display: none">

@@ -2,6 +2,9 @@ package pl.wkarnia.stock.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.wkarnia.stock.sales.basket.Basket;
+import pl.wkarnia.stock.sales.basket.BasketStorage;
+import pl.wkarnia.stock.sales.catalog.ProductDetails;
 import pl.wkarnia.stock.sales.offerting.OfferMaker;
 import pl.wkarnia.stock.sales.ordering.InMemoryReservationStorage;
 import pl.wkarnia.stock.sales.payment.DummyPaymentGateway;

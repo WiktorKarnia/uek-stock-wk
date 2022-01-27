@@ -1,4 +1,6 @@
-package pl.wkarnia.stock.sales;
+package pl.wkarnia.stock.sales.basket;
+
+import pl.wkarnia.stock.sales.basket.Basket;
 
 import java.util.HashMap;
 import java.util.Map;

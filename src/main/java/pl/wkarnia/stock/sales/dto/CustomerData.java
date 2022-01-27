@@ -1,4 +1,4 @@
-package pl.wkarnia.stock.sales;
+package pl.wkarnia.stock.sales.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

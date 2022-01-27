@@ -1,4 +1,4 @@
-package pl.wkarnia.stock.sales;
+package pl.wkarnia.stock.sales.basket;
 
 import java.math.BigDecimal;
 
@@ -11,7 +11,7 @@ public class BasketItem {
         this.price = price;
     }
 
-    static BasketItem of(String productId, BigDecimal price) {
+    public static BasketItem of(String productId, BigDecimal price) {
         return new BasketItem(productId, price);
     }
 

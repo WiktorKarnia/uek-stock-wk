@@ -1,5 +1,8 @@
 package pl.wkarnia.stock.sales;
 
+import pl.wkarnia.stock.sales.catalog.ProductDetails;
+import pl.wkarnia.stock.sales.catalog.ProductDetailsProvider;
+
 import java.util.HashMap;
 import java.util.Map;
 
